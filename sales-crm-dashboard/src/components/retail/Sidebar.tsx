@@ -1,44 +1,45 @@
-// src/components/Navbar.tsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { SidebarData } from "../../data/data"; // Adjust the import path based on your folder structure
+import '../../styles/SideBar.css' // Ensure you have this CSS file for styling
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
+  const [selected, setSelected] = useState(0);
+  const [expanded, setExpanded] = useState(true);
+
   return (
-    <aside className="bg-gray-800 w-64 h-screen p-4 flex flex-col">
-    <h1 className="text-white text-2xl font-semibold mb-8">MyApp</h1>
-    <nav className="flex-grow">
-      <ul className="space-y-4">
-        <li>
-          <Link to="/retail/main" className="text-gray-200 hover:text-white">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/retail/inventory" className="text-gray-200 hover:text-white">
-            Inventory
-          </Link>
-        </li>
-        <li>
-          <Link to="/retail/product" className="text-gray-200 hover:text-white">
-            Product
-          </Link>
-        </li>
-        <li>
-          <Link to="/retail/customer" className="text-gray-200 hover:text-white">
-            Customer
-          </Link>
-        </li>
-        <li>
-          <Link to="/retail/order" className="text-gray-200 hover:text-white">
-            Order
-          </Link>
-        </li>
-      </ul>
-    </nav>
-    <footer className="text-gray-500 text-sm mt-8">
-      © 2023 MyApp
-    </footer>
-  </aside>
+    <>
+      <div className="bars" style={expanded ? { left: '60%' } : { left: '5%' }} onClick={() => setExpanded(!expanded)}>
+        {/* You can add a button or icon here to toggle the sidebar */}
+        {/* For example: <UilBars /> */}
+      </div>
+      <div className={`sidebar ${expanded ? 'open' : 'closed'}`}>
+        {/* logo */}
+        <div className="logo">
+          <img src="../imgs/logo.png" alt="logo" />
+          <span>
+            Sh<span>o</span>ps
+          </span>
+        </div>
+
+        {/* menu */}
+        <div className="menu">
+          {SidebarData.map((item, index) => (
+            <Link to={item.path} // Use the path defined in SidebarData
+              className={selected === index ? "menuItem active" : "menuItem"}
+              key={index}
+              onClick={() => setSelected(index)}
+            >
+              <span>{item.heading}</span>
+            </Link>
+          ))}
+          {/* Sign-out option (if needed) */}
+          <div className="menuItem">
+            <span>Sign Out</span>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

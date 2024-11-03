@@ -15,9 +15,10 @@ import RetailBranch from './pages/retail/branch/retailBranch';
 import MainPage from './pages/retail/MainPage';
 import InventoryList from './components/retail/productList';
 import BrandCategories from './components/retail/brandCategories';
-import ProductPage from './components/retail/ProductPage';
 import CustomerPage from './components/retail/CustomerPage';
 import OrderPage from './components/retail/OrderPage'; 
+import ProductPage from './pages/ProductPage';
+import Registration from './pages/forms/RegistrationPage';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/retail/product" element={<ProductPage />} />
       <Route path="/retail/customer" element={<CustomerPage />} /> {/* New Customer Page route */}
       <Route path="/retail/order" element={<OrderPage />} /> {/* New Order Page route */}
+      <Route path="/retail/register" element={<Registration />} />
 
       <Route path="/crm/signup" element={<Signup />} />
       <Route path="/crm/signin" element={<Signin />} />

@@ -28,15 +28,20 @@ const RetailSignIn: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Login response data:', data);
-        localStorage.setItem('token', data.token); // Store token in localStorage
-        localStorage.setItem('branchShortId', data.branchShortId); // Store branchShortId in localStorage
-        navigate('/retail/main'); // Navigate to the main dashboard on successful login
+        
+        // Store token and branchShortId in session storage
+        sessionStorage.setItem('token', data.token); 
+        sessionStorage.setItem('branchShortId', data.branchShortId);
+        sessionStorage.setItem('role', data.role); // Store role
+        
+        // Navigate to the main dashboard on successful login
+        navigate('/retail/main'); 
       } else {
         const errorData = await response.json();
-        setError(errorData.message);
+        setError(errorData.message || 'Login failed. Please try again.'); // Improved error message
       }
     } catch (err) {
-      setError('Failed to connect to the server.');
+      setError('Failed to connect to the server.'); // General error message for network issues
     }
   };
 
@@ -65,7 +70,7 @@ const RetailSignIn: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <button type="submit">Sign In</button>
+            <button type="submit" disabled={loading}>Sign In</button> {/* Disable button while loading */}
           </form>
           {error && <p className={styles.error}>{error}</p>}
           <p>Don't have an account? <Link to="/retail/signup">Sign Up</Link></p>
