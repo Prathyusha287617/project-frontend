@@ -1,5 +1,6 @@
 // src/pages/MainPage.tsx
 import React from 'react';
+import Styles from '../../styles/Retail/mainpage.module.css';
 import Sidebar from '../../components/retail/Sidebar';
 
 const MainPage: React.FC = () => {

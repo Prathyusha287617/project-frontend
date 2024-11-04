@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Signup from './pages/crm/Signup';
 import Signin from './pages/crm/Signin';
 import RequirementGathering from './pages/crm/RequirementGatherings';
-import Dashboard from './pages/crm/Dashboard';
+import Dashboard from './pages/retail/Dashboard';
 import Contacts from './pages/crm/Contacts';
 import Leads from './pages/crm/Leads';
 import Projects from './pages/crm/Projects';
@@ -24,6 +24,7 @@ import CreateOrder from './components/retail/createOrder';
 import RestockUpdatePage from './pages/retail/restockUpdatePage';
 import Invoice from './components/retail/Invoice';
 import ProductCreationForm from './pages/forms/ProductionCreationForm';
+import DashboardLayout from './layouts/crm/DashboardLayout';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -31,12 +32,12 @@ const AppRoutes: React.FC = () => {
       <Route path="/" element={<Home />} />
       <Route path="/retail/signin" element={<RetailSignin />} />
       <Route path="/retail/branch" element={<RetailBranch/> } />
-      <Route path="/retail/main" element={<MainPage />} />
-      <Route path="/retail/inventory" element={<InventoryList />} />
+      <Route path="/retail/main" element={< Dashboard/>} />
+      <Route path="/retail/inventory" element={<DashboardLayout><InventoryList /></DashboardLayout>} />
       <Route path="/brands/:brandName" element={<BrandCategories />} />
-      <Route path="/retail/product" element={<ProductPage />} />
-      <Route path="/retail/customer" element={<CustomerPage />} /> {/* New Customer Page route */}
-      <Route path="/retail/order" element={<OrderPage />} /> {/* New Order Page route */}
+      <Route path="/retail/product" element={<DashboardLayout><ProductPage /></DashboardLayout>} />
+      <Route path="/retail/customer" element={<DashboardLayout><CustomerPage /></DashboardLayout>} /> {/* New Customer Page route */}
+      <Route path="/retail/order" element={<DashboardLayout><OrderPage /></DashboardLayout>} /> {/* New Order Page route */}
       <Route path="/retail/register" element={<Registration />} />
       <Route path="/products/:productShortId" element={<ProductDetails />} />
       <Route path="/retail/createOrder" element={<CreateOrder />} />

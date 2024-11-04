@@ -133,8 +133,8 @@ const ProductTable: React.FC = () => {
                         </tbody>
                     </table>
                     <div className="flex justify-center mt-4">
-                        <button
-                            className="mx-1 p-2 border border-gray-300 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
+                        <button style={{backgroundColor : '#1567eb'}}
+                            className="mx-1 p-2 border border-gray-300  rounded hover:bg-gray-300 disabled:opacity-50"
                             disabled={currentPage === 1}
                             onClick={() => handlePageChange(currentPage - 1)}
                         >
@@ -143,7 +143,7 @@ const ProductTable: React.FC = () => {
                         {[...Array(totalPages)].map((_, index) => (
                             <button
                                 key={index}
-                                className={`mx-1 p-2 border border-gray-300 bg-gray-200 rounded hover:bg-gray-300 ${
+                                className={`mx-1 p-2 border border-gray-300  rounded hover:bg-gray-300 ${
                                     currentPage === index + 1 ? 'bg-gray-400' : ''
                                 }`}
                                 onClick={() => handlePageChange(index + 1)}
@@ -151,7 +151,7 @@ const ProductTable: React.FC = () => {
                                 {index + 1}
                             </button>
                         ))}
-                        <button
+                        <button style={{backgroundColor : '#1567eb'}}
                             className="mx-1 p-2 border border-gray-300 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
                             disabled={currentPage === totalPages}
                             onClick={() => handlePageChange(currentPage + 1)}

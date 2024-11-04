@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../../styles/restockUpdatePage.module.css';
+import DashboardLayout from '../../layouts/crm/DashboardLayout';
  
 interface Product {
     productShortId: string;
@@ -63,6 +64,7 @@ const RestockUpdatePage: React.FC = () => {
     );
  
     return (
+        <DashboardLayout>
         <div className={styles.container}>
             <input
                 type="text"
@@ -93,6 +95,7 @@ const RestockUpdatePage: React.FC = () => {
                 ))}
             </div>
         </div>
+        </DashboardLayout>
     );
 }
  

@@ -8,23 +8,23 @@ const Sidebar: React.FC = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/crm/dashboard">Dashboard</Link>
+            <Link to="/retail/main">Home</Link>
           </li>
           <li>
-            <Link to="/crm/deals">Deals</Link>
+            <Link to="/retail/inventory">Inventory</Link>
           </li>
           <li>
-            <Link to="/crm/leads">Leads</Link>
+            <Link to="/retail/product">Product</Link>
           </li>
           <li>
-            <Link to="/crm/contacts">Contacts</Link>
+            <Link to="/retail/customer">Customer</Link>
           </li>
           <li>
-            <Link to="/crm/accounts">Accounts</Link>
+            <Link to="/retail/order">Order</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/crm/projects">Projects</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import SideBar from './Sidebar';
+
 
 interface IProduct {
   productShortId: string;
@@ -51,9 +51,6 @@ const ProductList: React.FC = () => {
 
   return (
     <div className="flex bg-gray-100 py-24 sm:py-32">
-      <div className="w-1/4 p-4">
-        <SideBar /> {/* Add SideBar here */}
-      </div>
       <div className="w-3/4 mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Brands</h2>
         <p className="mt-2 text-lg text-gray-600">Select a brand to view its categories on a new page.</p>

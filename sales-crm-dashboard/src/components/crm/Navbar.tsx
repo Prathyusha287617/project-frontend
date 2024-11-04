@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../../styles/crm/navbar.module.css';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ const Navbar: React.FC = () => {
           <div className={styles.dropdownMenu}>
             <button>Account Settings</button>
             <button>Help</button>
-            <button>Logout</button>
+            <button><Link to="/retail/signin">Log out</Link></button>
           </div>
         )}
       </div>
