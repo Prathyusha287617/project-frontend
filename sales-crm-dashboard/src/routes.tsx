@@ -19,6 +19,10 @@ import CustomerPage from './components/retail/CustomerPage';
 import OrderPage from './components/retail/OrderPage'; 
 import ProductPage from './pages/ProductPage';
 import Registration from './pages/forms/RegistrationPage';
+import ProductDetails from './components/retail/ProductDetails';
+import CreateOrder from './components/retail/createOrder';
+import RestockUpdatePage from './pages/retail/restockUpdatePage';
+import Invoice from './components/retail/Invoice';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -33,6 +37,10 @@ const AppRoutes: React.FC = () => {
       <Route path="/retail/customer" element={<CustomerPage />} /> {/* New Customer Page route */}
       <Route path="/retail/order" element={<OrderPage />} /> {/* New Order Page route */}
       <Route path="/retail/register" element={<Registration />} />
+      <Route path="/products/:productShortId" element={<ProductDetails />} />
+      <Route path="/retail/createOrder" element={<CreateOrder />} />
+      <Route path="/restock" element={<RestockUpdatePage />} />
+      <Route path="/invoice" element={<Invoice />} />
 
       <Route path="/crm/signup" element={<Signup />} />
       <Route path="/crm/signin" element={<Signin />} />

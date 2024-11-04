@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/ProductTable.module.css';
 
 interface Product {
@@ -23,7 +24,9 @@ const ProductTable: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [productsPerPage] = useState<number>(10);
-    const [searchTerm, setSearchTerm] = useState<string>(''); // State for search term
+    const [searchTerm, setSearchTerm] = useState<string>('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -49,11 +52,9 @@ const ProductTable: React.FC = () => {
         fetchProducts();
     }, []);
 
-    // Calculate current products based on page
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
-    // Filter products based on search term
     const filteredProducts = products.filter(product =>
         product.productName.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -61,15 +62,13 @@ const ProductTable: React.FC = () => {
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
-    // Handle page change
     const handlePageChange = (pageNumber: number) => {
         setCurrentPage(pageNumber);
     };
 
-    // Handle search input change
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
-        setCurrentPage(1); // Reset to first page on new search
+        setCurrentPage(1);
     };
 
     if (loading) {
@@ -82,8 +81,13 @@ const ProductTable: React.FC = () => {
 
     return (
         <div className="table-container p-4 bg-gray-50 min-h-screen">
+            <button
+                onClick={() => navigate('/retail/main')}
+                className="mb-4 p-2 bg-blue-500 text-white rounded"
+            >
+                Back to Main Page
+            </button>
             <h2 className="title text-2xl font-bold text-center mb-6">Product List</h2>
-            {/* Search Bar */}
             <div className="flex justify-center mb-4">
                 <input
                     type="text"
@@ -104,6 +108,7 @@ const ProductTable: React.FC = () => {
                                 <th className="p-3 border">Quantity</th>
                                 <th className="p-3 border">Category</th>
                                 <th className="p-3 border">Profit</th>
+                                <th className="p-3 border">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="text-gray-600">
@@ -115,11 +120,18 @@ const ProductTable: React.FC = () => {
                                     <td className="p-3 border">{product.productQuantity}</td>
                                     <td className="p-3 border">{product.category}</td>
                                     <td className="p-3 border">${product.profit.toFixed(2)}</td>
+                                    <td className="p-3 border">
+                                    <button
+                                        onClick={() => navigate(`/products/${product.productShortId}`)}
+                                            className="p-2 bg-green-500 text-white rounded" 
+                                    >
+                                            View More
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    {/* Pagination Controls */}
                     <div className="flex justify-center mt-4">
                         <button
                             className="mx-1 p-2 border border-gray-300 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"

@@ -1,0 +1,17 @@
+/* src/styles/invoice.module.css */
+.invoiceContainer {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+  }
+  
+  .invoiceSection {
+    margin-bottom: 20px;
+  }
+  
+  h1, h2, h3 {
+    color: #333;
+  }
+  
