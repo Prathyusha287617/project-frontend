@@ -38,6 +38,15 @@ const CreateOrder: React.FC = () => {
   const [showInvoice, setShowInvoice] = useState(false); // New state to control invoice visibility
   const [orderData, setOrderData] = useState<any>(null); // New state to store order data
 
+   // Check user role on component mount
+   useEffect(() => {
+    const userRole = sessionStorage.getItem('role'); // Get role from session storage
+    if (userRole !== 'sales_rep') {
+      // If role is not 'sales_rep', redirect to another page
+      navigate('/not-authorized'); // Redirect to a "Not Authorized" page or any other page
+    }
+  }, [navigate]);
+
    // Fetch all branches when the component mounts
    useEffect(() => {
     const fetchAllBranches = async () => {

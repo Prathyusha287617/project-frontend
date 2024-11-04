@@ -1,0 +1,97 @@
+.productForm {
+    max-width: 600px; /* Increase the maximum width for a more spacious layout */
+    margin: 50px auto; /* Center the form horizontally */
+    padding: 40px; /* Increased padding for a more spacious feel */
+    border-radius: 12px; /* Slightly rounded corners */
+    background-color: #ffffff; /* White background for clarity */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for a floating effect */
+    font-family: Arial, sans-serif; /* Font styling */
+  }
+ 
+  h2{
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #555;
+  }
+ 
+  .formGroup {
+    margin-bottom: 24px; /* Increased spacing between form groups */
+  }
+ 
+  .label {
+    display: block; /* Block display for labels */
+    font-weight: 600; /* Bold labels for clarity */
+    margin-bottom: 10px; /* Spacing below labels */
+    color: #555; /* Darker gray for better contrast */
+    font-size: 1.1rem; /* Slightly larger font size */
+  }
+ 
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%; /* Full width inputs */
+    padding: 12px; /* Increased padding for comfort */
+    border: 1px solid #ced4da; /* Light border */
+    border-radius: 6px; /* Rounded corners for inputs */
+    font-size: 1rem; /* Standard font size */
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+    font-family: inherit; /* Inherit font from parent */
+  }
+ 
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus {
+    border-color: #80bdff; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(45, 55, 72, 0.5); /* Soft blue glow */
+  }
+ 
+  .checkboxContainer {
+    display: flex; /* Align checkbox and label */
+    align-items: center; /* Center vertically */
+  }
+ 
+  input[type="checkbox"] {
+    margin-right: 12px; /* Spacing between checkbox and label */
+    transform: scale(1.2); /* Scale up checkbox */
+  }
+ 
+  .error {
+    color: #d9534f; /* Red color for error messages */
+    font-size: 0.9rem; /* Font size for error messages */
+    margin-top: 5px; /* Spacing above error messages */
+  }
+ 
+  .submitButton {
+    display: inline-block; /* Button styling */
+    width: 100%; /* Full width button */
+    padding: 14px; /* Increased button padding */
+    font-size: 1.1rem; /* Slightly larger font size */
+    font-weight: bold; /* Bold button text */
+    color: #ffffff; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 6px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+  }
+ 
+  .submitButton:hover {
+    background-color: #ced6e4; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+  }
+ 
+  .submitButton:active {
+    transform: translateY(1px); /* Slight downward movement on click */
+  }
+ 
+  @media (max-width: 600px) {
+    .productForm {
+      padding: 20px; /* Adjust padding for smaller screens */
+    }
+ 
+    .label {
+      font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+  }
