@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/customerRegistrationForm.module.css'
+import styles from '../../styles/customerRegistrationForm.module.css';
 
 interface CustomerFormData {
   customerName: string;
@@ -47,52 +47,54 @@ const CustomerRegistrationForm: React.FC = () => {
   };
 
   return (
-    <div className="form-container">
-      <h2>Register Customer</h2>
-      {submissionStatus && <p className="status-message">{submissionStatus}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Customer Name:
-          <input
-            type="text"
-            name="customerName"
-            value={formData.customerName}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <label>
-          Customer Email:
-          <input
-            type="email"
-            name="customerEmail"
-            value={formData.customerEmail}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <label>
-          Customer Phone:
-          <input
-            type="tel"
-            name="customerPhone"
-            value={formData.customerPhone}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <label>
-          Branch Short ID:
-          <input
-            type="text"
-            name="branchShortId"
-            value={formData.branchShortId}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <button type="submit">Register Customer</button>
-      </form>
+    <div className={styles.wrapper}>
+      <div className={styles.formContainer}>
+        <h2>Register Customer</h2>
+        {submissionStatus && <p className={styles.statusMessage}>{submissionStatus}</p>}
+        <form onSubmit={handleSubmit}>
+          <label>
+            Customer Name:
+            <input
+              type="text"
+              name="customerName"
+              value={formData.customerName}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <label>
+            Customer Email:
+            <input
+              type="email"
+              name="customerEmail"
+              value={formData.customerEmail}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <label>
+            Customer Phone:
+            <input
+              type="tel"
+              name="customerPhone"
+              value={formData.customerPhone}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <label>
+            Branch Short ID:
+            <input
+              type="text"
+              name="branchShortId"
+              value={formData.branchShortId}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <button type="submit">Register Customer</button>
+        </form>
+      </div>
     </div>
   );
 };

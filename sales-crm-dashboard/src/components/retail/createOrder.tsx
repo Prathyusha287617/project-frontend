@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../../styles/createOrder.module.css';
 import Invoice from './Invoice';
+import DashboardLayout from '../../layouts/crm/DashboardLayout';
 
 interface Customer {
   customerShortId: string;
@@ -24,6 +25,7 @@ interface Branch {
   }
 
 const CreateOrder: React.FC = () => {
+  const [showCustomerForm, setShowCustomerForm] = useState(false);
   const [customerEmail, setCustomerEmail] = useState('');
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [productShortId, setProductShortId] = useState('');
@@ -76,6 +78,9 @@ const CreateOrder: React.FC = () => {
       console.error('Error fetching customer:', error);
       alert('An error occurred while fetching the customer.');
     }
+  };
+  const handleRegisterCustomerClick = () => {
+    navigate('/retail/customerForm');
   };
 
   // Search product by short ID
@@ -138,6 +143,7 @@ const CreateOrder: React.FC = () => {
     };
 
   return (
+    <DashboardLayout>
     <div className={styles.container}>
       <h1>Create New Order</h1>
 
@@ -151,6 +157,10 @@ const CreateOrder: React.FC = () => {
           className={styles.inputField}
         />
         <button onClick={searchCustomer} className={styles.searchButton}>Search Customer</button>
+        
+        <button onClick={handleRegisterCustomerClick} className={styles.registerButton}>
+        Register Customer
+      </button>
       </div>
 
       {/* Customer Info Autofill */}
@@ -312,6 +322,7 @@ const CreateOrder: React.FC = () => {
         
       </div>
     </div>
+    </DashboardLayout>
   );
 };
 

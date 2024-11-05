@@ -25,6 +25,7 @@ import RestockUpdatePage from './pages/retail/restockUpdatePage';
 import Invoice from './components/retail/Invoice';
 import ProductCreationForm from './pages/forms/ProductionCreationForm';
 import DashboardLayout from './layouts/crm/DashboardLayout';
+import CustomerRegistrationForm from './pages/forms/CustomerRegistrationForm';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -44,7 +45,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/retail/restock" element={<RestockUpdatePage />} />
       <Route path="/invoice" element={<Invoice />} />
       <Route path="/retail/productForm" element={<ProductCreationForm/>} />
-
+      <Route path="retail/customerForm" element={<CustomerRegistrationForm />}/>
+      
       <Route path="/crm/signup" element={<Signup />} />
       <Route path="/crm/signin" element={<Signin />} />
       <Route path="/crm/requirements" element={<RequirementGathering />} />
