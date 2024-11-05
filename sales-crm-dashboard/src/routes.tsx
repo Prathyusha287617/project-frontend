@@ -41,7 +41,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/retail/register" element={<Registration />} />
       <Route path="/products/:productShortId" element={<ProductDetails />} />
       <Route path="/retail/createOrder" element={<CreateOrder />} />
-      <Route path="/restock" element={<RestockUpdatePage />} />
+      <Route path="/retail/restock" element={<RestockUpdatePage />} />
       <Route path="/invoice" element={<Invoice />} />
       <Route path="/retail/productForm" element={<ProductCreationForm/>} />
 

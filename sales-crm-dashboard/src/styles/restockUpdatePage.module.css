@@ -86,3 +86,10 @@
     background-color: #2d3748; /* Darker shade on hover */
     transform: translateY(-1px); /* Slight lift on hover */
 }
+
+.restockInput {
+    width: 80px; /* Adjust this value as needed */
+    padding: 4px; /* Optional: adjust padding for a compact look */
+    font-size: 14px; /* Optional: adjust font size to match the reduced size */
+    margin-right: 8px; /* Optional: add spacing between the input and button */
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../../components/crm/Sidebar';
+import Sidebar from '../../components/retail/Sidebar';
 import Navbar from '../../components/crm/Navbar';
 import styles from '../../styles/crm/dashboardlayout.module.css';
 

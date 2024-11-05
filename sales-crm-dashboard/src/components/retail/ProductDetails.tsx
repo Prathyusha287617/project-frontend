@@ -1,6 +1,6 @@
-// ProductDetails.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import styles from '../../styles/Retail/productDetails.module.css' // Import your CSS module
 
 interface Product {
     productShortId: string;
@@ -57,25 +57,25 @@ const ProductDetails: React.FC = () => {
     }
 
     return (
-        <div className="p-4">
-            <button onClick={() => navigate(-1)} className="p-2 bg-blue-500 text-white rounded mb-4">
+        <div className={styles.container}>
+            <button onClick={() => navigate(-1)} className={styles.button}>
                 Back to Product List
             </button>
-            <h2 className="text-2xl font-bold mb-4">Product Details</h2>
-            <div className="p-4 border border-gray-300 rounded">
-                <p><strong>Product Short ID:</strong> {product.productShortId}</p>
-                <p><strong>Product Name:</strong> {product.productName}</p>
-                <p><strong>Brand Name:</strong> {product.brandName}</p>
-                <p><strong>Quantity:</strong> {product.productQuantity}</p>
-                <p><strong>Threshold:</strong> {product.threshold}</p>
-                <p><strong>Restock Quantity:</strong> {product.restockQuantity}</p>
-                <p><strong>Needs Restock:</strong> {product.needsRestock ? 'Yes' : 'No'}</p>
-                <p><strong>Description:</strong> {product.description}</p>
-                <p><strong>Category:</strong> {product.category}</p>
-                <p><strong>Actual Price:</strong> ${product.actualPrice.toFixed(2)}</p>
-                <p><strong>Selling Price:</strong> ${product.sellingPrice.toFixed(2)}</p>
-                <p><strong>Profit:</strong> ${product.profit.toFixed(2)}</p>
-                <p><strong>Branch IDs:</strong> {product.branchShortId.join(', ')}</p>
+            <h2 className={styles.title}>Product Details</h2>
+            <div className={styles.detailsContainer}>
+                <div className={styles.detailItem}><strong>Product Short ID:</strong> {product.productShortId}</div>
+                <div className={styles.detailItem}><strong>Product Name:</strong> {product.productName}</div>
+                <div className={styles.detailItem}><strong>Brand Name:</strong> {product.brandName}</div>
+                <div className={styles.detailItem}><strong>Quantity:</strong> {product.productQuantity}</div>
+                <div className={styles.detailItem}><strong>Threshold:</strong> {product.threshold}</div>
+                <div className={styles.detailItem}><strong>Restock Quantity:</strong> {product.restockQuantity}</div>
+                <div className={styles.detailItem}><strong>Needs Restock:</strong> {product.needsRestock ? 'Yes' : 'No'}</div>
+                <div className={styles.detailItem}><strong>Description:</strong> {product.description}</div>
+                <div className={styles.detailItem}><strong>Category:</strong> {product.category}</div>
+                <div className={styles.detailItem}><strong>Actual Price:</strong> {product.actualPrice.toFixed(2)}</div>
+                <div className={styles.detailItem}><strong>Selling Price:</strong> {product.sellingPrice.toFixed(2)}</div>
+                <div className={styles.detailItem}><strong>Profit:</strong> {product.profit.toFixed(2)}</div>
+                <div className={styles.detailItem}><strong>Branch IDs:</strong> {product.branchShortId.join(', ')}</div>
             </div>
         </div>
     );

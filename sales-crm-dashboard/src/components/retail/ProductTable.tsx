@@ -130,11 +130,14 @@ const ProductTable: React.FC = () => {
                                     <td className="p-3 border">{product.category}</td>
                                     <td className="p-3 border">{product.profit.toFixed(2)}</td>
                                     <td className="p-3 border">
-                                        <button
-                                            onClick={() => navigate(`/products/${product.productShortId}`)}
-                                            className="p-2 bg-green-500 text-white rounded" 
+                                    <button
+                                        onClick={() => {
+                                        console.log('Navigating to product details');
+                                        navigate(`/products/${product.productShortId}`);
+                                        }}
+                                        className="p-2 bg-green-500 text-white rounded"
                                         >
-                                            View More
+                                         View More
                                         </button>
                                     </td>
                                 </tr>
