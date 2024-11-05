@@ -31,12 +31,20 @@ const ProductTable: React.FC = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
+                const role = sessionStorage.getItem('role');
                 const branchShortId = sessionStorage.getItem('branchShortId');
-                if (!branchShortId) {
-                    throw new Error('Branch Short ID not found in localStorage');
+                let endpoint = '';
+
+                // Determine endpoint based on role
+                if (role === 'business_retailer') {
+                    endpoint = `http://localhost:5003/api/product/all`;
+                } else if (branchShortId) {
+                    endpoint = `http://localhost:5003/api/product/branch/${branchShortId}`;
+                } else {
+                    throw new Error('Branch Short ID not found in sessionStorage');
                 }
 
-                const response = await fetch(`http://localhost:5003/api/product/branch/${branchShortId}`);
+                const response = await fetch(endpoint);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -52,6 +60,7 @@ const ProductTable: React.FC = () => {
         fetchProducts();
     }, []);
 
+    // Pagination calculations
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
@@ -68,7 +77,7 @@ const ProductTable: React.FC = () => {
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
-        setCurrentPage(1);
+        setCurrentPage(1); // Reset to first page on new search
     };
 
     if (loading) {
@@ -119,12 +128,12 @@ const ProductTable: React.FC = () => {
                                     <td className="p-3 border">{product.brandName}</td>
                                     <td className="p-3 border">{product.productQuantity}</td>
                                     <td className="p-3 border">{product.category}</td>
-                                    <td className="p-3 border">${product.profit.toFixed(2)}</td>
+                                    <td className="p-3 border">{product.profit.toFixed(2)}</td>
                                     <td className="p-3 border">
-                                    <button
-                                        onClick={() => navigate(`/products/${product.productShortId}`)}
+                                        <button
+                                            onClick={() => navigate(`/products/${product.productShortId}`)}
                                             className="p-2 bg-green-500 text-white rounded" 
-                                    >
+                                        >
                                             View More
                                         </button>
                                     </td>
@@ -133,8 +142,8 @@ const ProductTable: React.FC = () => {
                         </tbody>
                     </table>
                     <div className="flex justify-center mt-4">
-                        <button style={{backgroundColor : '#1567eb'}}
-                            className="mx-1 p-2 border border-gray-300  rounded hover:bg-gray-300 disabled:opacity-50"
+                        <button
+                            className="mx-1 p-2 border border-gray-300 rounded hover:bg-gray-300 disabled:opacity-50"
                             disabled={currentPage === 1}
                             onClick={() => handlePageChange(currentPage - 1)}
                         >
@@ -143,7 +152,7 @@ const ProductTable: React.FC = () => {
                         {[...Array(totalPages)].map((_, index) => (
                             <button
                                 key={index}
-                                className={`mx-1 p-2 border border-gray-300  rounded hover:bg-gray-300 ${
+                                className={`mx-1 p-2 border border-gray-300 rounded hover:bg-gray-300 ${
                                     currentPage === index + 1 ? 'bg-gray-400' : ''
                                 }`}
                                 onClick={() => handlePageChange(index + 1)}
@@ -151,8 +160,8 @@ const ProductTable: React.FC = () => {
                                 {index + 1}
                             </button>
                         ))}
-                        <button style={{backgroundColor : '#1567eb'}}
-                            className="mx-1 p-2 border border-gray-300 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
+                        <button
+                            className="mx-1 p-2 border border-gray-300 rounded hover:bg-gray-300 disabled:opacity-50"
                             disabled={currentPage === totalPages}
                             onClick={() => handlePageChange(currentPage + 1)}
                         >

@@ -34,27 +34,88 @@ const Invoice: React.FC = () => {
     doc.save('invoice.pdf');
   };
 
-  return (
-    <div>
-      <h1>Invoice</h1>
-      {orderData ? (
-        <div>
-          <h2>Order Details</h2>
-          <p><strong>Customer Name:</strong> {orderData.customer.customerName}</p>
-          <p><strong>Customer Email:</strong> {orderData.customer.customerEmail}</p>
-          <p><strong>Customer Phone:</strong> {orderData.customer.customerPhone}</p>
-          <p><strong>Order Date:</strong> {new Date(orderData.orderDate).toLocaleDateString()}</p>
-          <p><strong>Product:</strong> {orderData.product.productName}</p>
-          <p><strong>Quantity:</strong> {orderData.quantity}</p>
-          <p><strong>Total Price:</strong> ${orderData.totalPrice}</p>
-          <p><strong>Transaction Status:</strong> {orderData.transactionStatus}</p>
-          <button onClick={downloadInvoice}>Download Invoice</button>
-        </div>
-      ) : (
-        <p>No order data available.</p>
-      )}
+  return(
+  <div className='m-5 p-5 border-2 w-2/4' style={{justifySelf : 'center'}}>
+  <h1 className='text-center'>Invoice</h1>
+  {orderData ? (
+    <div className='my-5 w-3/4' style={{justifySelf : 'center'}}>
+      <h2 className='py-4'>Order Details</h2>
+      <table >
+        <tbody>
+          <tr>
+            <td>
+            <strong>Customer Name:</strong>
+            </td>
+            <td>
+            {orderData.customer.customerName}
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <strong>Customer Email:</strong>               
+            </td>
+            <td>
+            {orderData.customer.customerEmail}
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <strong>Customer Phone:</strong>             
+            </td>
+            <td>
+            {orderData.customer.customerPhone}
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <strong>Order Date:</strong>             
+            </td>
+            <td>
+            {new Date(orderData.orderDate).toLocaleDateString()}
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <strong>Product:</strong>             
+            </td>
+            <td>
+            {orderData.product.productName}
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <strong>Quantity:</strong>             
+            </td>
+            <td>
+            {orderData.quantity}
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <strong>Total Price:</strong>             
+            </td>
+            <td>
+            ${orderData.totalPrice}
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <strong>Transaction Status:</strong>             
+            </td>
+            <td>
+            {orderData.transactionStatus}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button className='my-4' onClick={downloadInvoice}>Download Invoice</button>
     </div>
-  );
+  ) : (
+    <p>No order data available.</p>
+  )}
+</div>
+);
 };
 
 export default Invoice;
