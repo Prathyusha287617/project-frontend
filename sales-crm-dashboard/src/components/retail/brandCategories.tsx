@@ -19,7 +19,7 @@ const BrandCategories: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const branchShortId = localStorage.getItem('branchShortId');
+    const branchShortId = sessionStorage.getItem('branchShortId');
     if (branchShortId && brandName) {
       getCategoriesByBranchAndBrand(branchShortId, brandName)
         .then(setCategories)

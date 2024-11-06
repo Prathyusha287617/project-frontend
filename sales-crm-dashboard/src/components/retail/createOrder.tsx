@@ -4,26 +4,26 @@ import axios from 'axios';
 import styles from '../../styles/createOrder.module.css';
 import Invoice from './Invoice';
 import DashboardLayout from '../../layouts/crm/DashboardLayout';
-
+ 
 interface Customer {
   customerShortId: string;
   customerName: string;
   customerEmail: string;
   customerPhone: string;
 }
-
+ 
 interface Product {
   productShortId: string;
   productName: string;
   sellingPrice: number;
   stockQuantity:number;
 }
-
+ 
 interface Branch {
     branchShortId: string;
     branchName: string;
   }
-
+ 
 const CreateOrder: React.FC = () => {
   const [showCustomerForm, setShowCustomerForm] = useState(false);
   const [customerEmail, setCustomerEmail] = useState('');
@@ -35,11 +35,11 @@ const CreateOrder: React.FC = () => {
   const navigate = useNavigate();
   const [branchShortId, setBranchShortId] = useState<string>('');
   const [transactionStatus, setTransactionStatus] = useState<string>('Pending');
-  const [allBranches, setAllBranches] = useState<Branch[]>([]); 
+  const [allBranches, setAllBranches] = useState<Branch[]>([]);
   const [orderDate, setOrderDate] = useState<string>(new Date().toISOString().split('T')[0]); // Default to today's date
   const [showInvoice, setShowInvoice] = useState(false); // New state to control invoice visibility
   const [orderData, setOrderData] = useState<any>(null); // New state to store order data
-
+ 
    // Check user role on component mount
    useEffect(() => {
     const userRole = sessionStorage.getItem('role'); // Get role from session storage
@@ -48,7 +48,7 @@ const CreateOrder: React.FC = () => {
       navigate('/not-authorized'); // Redirect to a "Not Authorized" page or any other page
     }
   }, [navigate]);
-
+ 
    // Fetch all branches when the component mounts
    useEffect(() => {
     const fetchAllBranches = async () => {
@@ -60,10 +60,10 @@ const CreateOrder: React.FC = () => {
         alert('An error occurred while fetching branches.');
       }
     };
-
+ 
     fetchAllBranches();
   }, []);
-
+ 
   // Search customer by email
   const searchCustomer = async () => {
     try {
@@ -82,7 +82,7 @@ const CreateOrder: React.FC = () => {
   const handleRegisterCustomerClick = () => {
     navigate('/retail/customerForm');
   };
-
+ 
   // Search product by short ID
   const searchProduct = async () => {
     try {
@@ -98,7 +98,7 @@ const CreateOrder: React.FC = () => {
       alert('An error occurred while fetching the product.');
     }
   };
-
+ 
   // Handle order submission
   const handleSubmitOrder = async () => {
     if (!customer || !product || !branchShortId) {
@@ -114,39 +114,39 @@ const CreateOrder: React.FC = () => {
       transactionStatus,
       orderDate: new Date().toISOString(),
     };
-
+ 
     try {
         // First, create the order
         const response = await axios.post('http://localhost:5004/api/orders', orderData); // Update with your orders endpoint
         alert('Order created successfully');
-      
+     
         // Call Product Service to update the stock level
         await axios.put(`http://localhost:5003/api/product/${product.productShortId}`, {
           quantity, // Send the quantity to reduce
         });
-      
+     
         alert('Product quantity updated successfully');
-        
+       
         // Navigate to Invoice page with order data
-        navigate('/invoice', { state: { orderData: { 
-          customer, 
-          product, 
-          quantity, 
-          totalPrice, 
-          transactionStatus, 
-          orderDate: orderData.orderDate 
+        navigate('/invoice', { state: { orderData: {
+          customer,
+          product,
+          quantity,
+          totalPrice,
+          transactionStatus,
+          orderDate: orderData.orderDate
         }}}); // Pass necessary data
       } catch (error) {
         console.error('Error creating order:', error);
         alert('An error occurred while creating the order.');
       }
     };
-
+ 
   return (
     <DashboardLayout>
     <div className={styles.container}>
       <h1>Create New Order</h1>
-
+ 
       {/* Customer Search Section */}
       <div className={styles.customerSearch}>
         <input
@@ -157,13 +157,12 @@ const CreateOrder: React.FC = () => {
           className={styles.inputField}
         />
         <button onClick={searchCustomer} className={styles.searchButton}>Search Customer</button>
-        
+       
         <button onClick={handleRegisterCustomerClick} className={styles.registerButton}>
         Register Customer
       </button>
       </div>
-
-      {/* Customer Info Autofill */}
+      {/* Customer Info Autofill
       {customer && (
         <div className={styles.customerInfo}>
           <h2>Customer Details</h2>
@@ -172,8 +171,10 @@ const CreateOrder: React.FC = () => {
           <p><strong>Email:</strong> {customer.customerEmail}</p>
           <p><strong>Phone:</strong> {customer.customerPhone}</p>
         </div>
-      )}
-
+      )}*/}
+ 
+     
+ 
       {/* Order Form */}
       <h2>Create Order</h2>
       <div className={styles.orderForm}>
@@ -214,19 +215,9 @@ const CreateOrder: React.FC = () => {
             className={styles.inputField}
           />
         </label>
-        
-        {/* Product Search Section */}
-        <div className={styles.productSearch}>
-          <input
-            type="text"
-            placeholder="Enter product Short ID"
-            value={productShortId}
-            onChange={(e) => setProductShortId(e.target.value)}
-            className={styles.inputField}
-          />
-          <button onClick={searchProduct} className={styles.searchButton}>Search Product</button>
-        </div>
-
+       
+   
+ 
         {/* Order Date Selection */}
         <label>
           Order Date:
@@ -237,7 +228,7 @@ const CreateOrder: React.FC = () => {
             className={styles.inputField}
           />
         </label>
-
+ 
          {/* Branch Selection */}
       <div className={styles.branchSelection}>
         <h2>Select Branch</h2>
@@ -254,7 +245,18 @@ const CreateOrder: React.FC = () => {
           ))}
         </select>
       </div>
-
+      {/* Product Search Section */}
+      <div className={styles.productSearch}>
+          <input
+            type="text"
+            placeholder="Enter product Short ID"
+            value={productShortId}
+            onChange={(e) => setProductShortId(e.target.value)}
+            className={styles.inputField}
+          />
+          <button onClick={searchProduct} className={styles.searchButton}>Search Product</button>
+        </div>
+ 
         {/* Product Info Autofill */}
         {product && (
           <div className={styles.productInfo}>
@@ -302,7 +304,7 @@ const CreateOrder: React.FC = () => {
             <p>Total Price: ${totalPrice}</p>
           </div>
         )}
-
+ 
         {/* Transaction Status Dropdown */}
       <div className={styles.transactionStatus}>
         <h2>Transaction Status</h2>
@@ -315,15 +317,15 @@ const CreateOrder: React.FC = () => {
           <option value="Completed">Completed</option>
         </select>
       </div>
-
+ 
         {/* Submit Order */}
         <button onClick={handleSubmitOrder} className={styles.submitButton}>Submit Order</button>
-
-        
+ 
+       
       </div>
     </div>
     </DashboardLayout>
   );
 };
-
+ 
 export default CreateOrder;

@@ -1,6 +1,6 @@
 /* Sidebar/styles.module.css */
 .sidebar {
-    background: linear-gradient(to right, #F8F8F8, #D3D3D3);
+    background: linear-gradient(to bottom, #F8F8F8, #D3D3D3);
     color: #1A1C22;
     width: 250px;
     height: 100%;
