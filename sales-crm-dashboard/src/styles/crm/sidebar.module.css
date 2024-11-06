@@ -1,8 +1,8 @@
 /* Sidebar/styles.module.css */
 .sidebar {
-    background-color: #F8F8F8;
+    background: linear-gradient(to right, #F8F8F8, #D3D3D3);
     color: #1A1C22;
-    width: 200px;
+    width: 250px;
     height: 100%;
     padding: 20px;
     position: fixed;

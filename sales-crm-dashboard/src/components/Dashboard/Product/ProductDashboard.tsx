@@ -68,7 +68,7 @@ const ProductDashboard: React.FC = () => {
   return (
     <div className="dashboard-container p-4">
       
-      <PieChart width={300} height={300}> {/* Reduced width and height */}
+      <PieChart width={250} height={300}> {/* Reduced width and height */}
         <Pie
           data={data}
           cx="50%"

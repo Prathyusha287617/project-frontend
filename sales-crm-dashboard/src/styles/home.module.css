@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-image: url('../../public/download.png');
+    background-image: url('./Assets/bgimage@.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -21,8 +21,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
-    color: var(--text-color);
+    background-color: transparent;
+    color: whitesmoke;
     padding: 20px 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
@@ -56,7 +56,7 @@
     align-items: center;
     text-align: center;
     padding: 20px;
-    color: var(--text-color);
+    color: black;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
   

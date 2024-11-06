@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 
   return (
     <div className={styles.homeContainer}>
-      <Topbar />
+      <Topbar homePage= {true} />
       <main className={styles.mainContent}>
         <h2>Welcome to Sales ERP</h2>
         <p>Manage your sales, contacts, and projects from one powerful platform.</p>

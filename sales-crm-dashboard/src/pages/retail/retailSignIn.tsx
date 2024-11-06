@@ -47,11 +47,11 @@ const RetailSignIn: React.FC = () => {
 
   return (
     <div className={styles.authContainer}>
-      <Topbar />
+      <Topbar homePage= {false} />
       <div className={styles.authContent}>
         <div className={styles.infoSection}>
           <h2>Welcome Back!</h2>
-          <p>Sign in to manage your Retail and track your sales, leads, and more.</p>
+          <p style={{color : '#3c90f0'}}>Sign in to manage your Retail and track your sales, leads, and more.</p>
         </div>
         <div className={styles.formSection}>
           <h2>Sign In</h2>

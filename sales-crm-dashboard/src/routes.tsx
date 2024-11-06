@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import Signup from './pages/crm/Signup';
-import Signin from './pages/crm/Signin';
+
 import RequirementGathering from './pages/crm/RequirementGatherings';
 import Dashboard from './pages/retail/Dashboard';
 import Contacts from './pages/crm/Contacts';
@@ -47,8 +46,6 @@ const AppRoutes: React.FC = () => {
       <Route path="/retail/productForm" element={<ProductCreationForm/>} />
       <Route path="retail/customerForm" element={<CustomerRegistrationForm />}/>
       
-      <Route path="/crm/signup" element={<Signup />} />
-      <Route path="/crm/signin" element={<Signin />} />
       <Route path="/crm/requirements" element={<RequirementGathering />} />
       <Route path="/crm/dashboard" element={<Dashboard />} />
       <Route path="/crm/contacts" element={<Contacts />} />

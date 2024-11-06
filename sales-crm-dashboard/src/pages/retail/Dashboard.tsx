@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
   return (
     <DashboardLayout>
       <DashboardPage />
-      <Grid container spacing={4}>
+      <Grid container spacing={4} style={{padding : 2 , marginTop : 5}}>
         {/* Profit Distribution Card */}
         <Grid item xs={12} sm={6} md={6}>
           <Box
@@ -23,6 +23,7 @@ const Dashboard: React.FC = () => {
               backgroundColor: '#fff',
               height: '100%',
               boxShadow: 2,
+              width : 520,marginLeft : 5
             }}
           >
             <Typography variant="h6" component="h2" gutterBottom>
@@ -42,6 +43,7 @@ const Dashboard: React.FC = () => {
               backgroundColor: '#fff',
               height: '100%',
               boxShadow: 2,
+              width : 520
             }}
           >
             <Typography variant="h6" component="h2" gutterBottom>

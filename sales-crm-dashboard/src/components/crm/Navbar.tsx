@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const roleName = sessionStorage.getItem('role');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -11,7 +12,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div className={styles.navbar}>
-      <h1>Welcome, User</h1>
+      <h1>Welcome, {roleName?.toLocaleUpperCase()}</h1>
       <div className={styles.profile}>
         <button onClick={toggleMenu} className={styles.profileButton}>
           Profile
