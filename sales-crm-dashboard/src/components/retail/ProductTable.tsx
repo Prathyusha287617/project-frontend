@@ -133,7 +133,7 @@ const ProductTable: React.FC = () => {
                                     <button
                                         onClick={() => {
                                         console.log('Navigating to product details');
-                                        navigate(`/products/${product.productShortId}`);
+                                        navigate(`/products/pro/${product.productShortId}`);
                                         }}
                                         className="p-2 bg-green-500 text-white rounded"
                                         >

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styles from '../../styles/Retail/productDetails.module.css' // Import your CSS module
+import styles from '../../styles/Retail/productDetails.module.css'; // Import your CSS module
+import DashboardLayout from '../../layouts/crm/DashboardLayout';
 
 interface Product {
     productShortId: string;
@@ -57,27 +58,31 @@ const ProductDetails: React.FC = () => {
     }
 
     return (
+        <DashboardLayout>
         <div className={styles.container}>
-            <button onClick={() => navigate(-1)} className={styles.button}>
+            <button onClick={() => navigate(-1)} className={styles.backButton}>
                 Back to Product List
             </button>
-            <h2 className={styles.title}>Product Details</h2>
-            <div className={styles.detailsContainer}>
-                <div className={styles.detailItem}><strong>Product Short ID:</strong> {product.productShortId}</div>
-                <div className={styles.detailItem}><strong>Product Name:</strong> {product.productName}</div>
-                <div className={styles.detailItem}><strong>Brand Name:</strong> {product.brandName}</div>
-                <div className={styles.detailItem}><strong>Quantity:</strong> {product.productQuantity}</div>
-                <div className={styles.detailItem}><strong>Threshold:</strong> {product.threshold}</div>
-                <div className={styles.detailItem}><strong>Restock Quantity:</strong> {product.restockQuantity}</div>
-                <div className={styles.detailItem}><strong>Needs Restock:</strong> {product.needsRestock ? 'Yes' : 'No'}</div>
-                <div className={styles.detailItem}><strong>Description:</strong> {product.description}</div>
-                <div className={styles.detailItem}><strong>Category:</strong> {product.category}</div>
-                <div className={styles.detailItem}><strong>Actual Price:</strong> {product.actualPrice.toFixed(2)}</div>
-                <div className={styles.detailItem}><strong>Selling Price:</strong> {product.sellingPrice.toFixed(2)}</div>
-                <div className={styles.detailItem}><strong>Profit:</strong> {product.profit.toFixed(2)}</div>
-                <div className={styles.detailItem}><strong>Branch IDs:</strong> {product.branchShortId.join(', ')}</div>
+            <div className={styles.detailsCard}>
+                <h2 className={styles.title}>Product Details</h2>
+                <div className={styles.detailsGrid}>
+                    <div className={styles.detailItem}><strong>Product Short ID:</strong> {product.productShortId}</div>
+                    <div className={styles.detailItem}><strong>Product Name:</strong> {product.productName}</div>
+                    <div className={styles.detailItem}><strong>Brand Name:</strong> {product.brandName}</div>
+                    <div className={styles.detailItem}><strong>Quantity:</strong> {product.productQuantity}</div>
+                    <div className={styles.detailItem}><strong>Threshold:</strong> {product.threshold}</div>
+                    <div className={styles.detailItem}><strong>Restock Quantity:</strong> {product.restockQuantity}</div>
+                    <div className={styles.detailItem}><strong>Needs Restock:</strong> {product.needsRestock ? 'Yes' : 'No'}</div>
+                    <div className={styles.detailItem}><strong>Description:</strong> {product.description}</div>
+                    <div className={styles.detailItem}><strong>Category:</strong> {product.category}</div>
+                    <div className={styles.detailItem}><strong>Actual Price:</strong> ${product.actualPrice.toFixed(2)}</div>
+                    <div className={styles.detailItem}><strong>Selling Price:</strong> ${product.sellingPrice.toFixed(2)}</div>
+                    <div className={styles.detailItem}><strong>Profit:</strong> ${product.profit.toFixed(2)}</div>
+                    <div className={styles.detailItem}><strong>Branch IDs:</strong> {product.branchShortId.join(', ')}</div>
+                </div>
             </div>
         </div>
+        </DashboardLayout>
     );
 };
 

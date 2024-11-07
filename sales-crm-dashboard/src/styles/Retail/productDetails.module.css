@@ -1,42 +1,71 @@
-/* ProductDetails.module.css */
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    max-width: 800px; /* Set a maximum width for better readability */
-    margin: auto; /* Center the container */
+    background-color: #f9f9f9;
 }
 
-.button {
+.backButton {
+    background-color: #4C6E91;
+    color: #fff;
     padding: 10px 20px;
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
 }
 
-.button:hover {
-    background-color: #0056b3; /* Darker shade for hover */
+.backButton:hover {
+    background-color: #37506B;
+}
+
+.detailsCard {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .title {
-    font-size: 2rem; /* Font size for the title */
-    font-weight: bold;
-    margin-bottom: 20px; /* Space below title */
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.detailsContainer {
-    padding: 20px;
-    border: 1px solid #e2e8f0; /* Light border */
-    border-radius: 5px;
-    background-color: #ffffff; /* White background for details */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+.detailsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .detailItem {
-    margin-bottom: 10px; /* Space between detail items */
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
 }
 
 .detailItem strong {
-    color: #333; /* Darker color for labels */
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .detailsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .backButton {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }

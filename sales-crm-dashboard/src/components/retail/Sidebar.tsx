@@ -13,11 +13,19 @@ const Sidebar: React.FC = () => {
             <Link to="/retail/main">Home</Link>
           </li>
           <li>
-            <Link to="/retail/inventory">Inventory</Link>
+            <Link to="/retail/branches">Branches</Link>
           </li>
           <li>
             <Link to="/retail/product">Product</Link>
           </li>
+          {role === 'business_retailer'  && ( // Check if the role is branchRetailer
+            <>
+              <li>
+                <Link to="/retail/branchForm">Add Branch</Link>
+              </li>
+              
+            </>
+          )}
           {role === 'branch_retailer'  && ( // Check if the role is branchRetailer
             <>
               <li>

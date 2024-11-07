@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import styles from '../../styles/ProductionCreationForm.module.css';
+import DashboardLayout from '../../layouts/crm/DashboardLayout';
  
 const ProductCreationForm: React.FC = () => {
   // State for form inputs
@@ -110,6 +111,7 @@ const ProductCreationForm: React.FC = () => {
   };
  
   return (
+    <DashboardLayout>
     <div className={styles.productForm}>
       <h2>Create Product</h2>
       {error && <div className={styles.error}>{error}</div>}
@@ -219,6 +221,7 @@ const ProductCreationForm: React.FC = () => {
         <button type="submit" className={styles.submitButton}>Create Product</button>
       </form>
     </div>
+    </DashboardLayout>
   );
 };
  

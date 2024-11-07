@@ -25,6 +25,9 @@ import Invoice from './components/retail/Invoice';
 import ProductCreationForm from './pages/forms/ProductionCreationForm';
 import DashboardLayout from './layouts/crm/DashboardLayout';
 import CustomerRegistrationForm from './pages/forms/CustomerRegistrationForm';
+import BranchForm from './components/retail/branchForm';
+import BranchCards from './components/retail/branchCard';
+import ProductList from './components/retail/productList';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -33,18 +36,20 @@ const AppRoutes: React.FC = () => {
       <Route path="/retail/signin" element={<RetailSignin />} />
       <Route path="/retail/branch" element={<RetailBranch/> } />
       <Route path="/retail/main" element={< Dashboard/>} />
-      <Route path="/retail/inventory" element={<DashboardLayout><InventoryList /></DashboardLayout>} />
-      <Route path="/brands/:brandName" element={<BrandCategories />} />
+      <Route path="/products/:branchShortId" element={<ProductList />} />
+      <Route path="/retail/brand/:brandName" element={<BrandCategories />} />
       <Route path="/retail/product" element={<DashboardLayout><ProductPage /></DashboardLayout>} />
       <Route path="/retail/customer" element={<DashboardLayout><CustomerPage /></DashboardLayout>} /> {/* New Customer Page route */}
       <Route path="/retail/order" element={<DashboardLayout><OrderPage /></DashboardLayout>} /> {/* New Order Page route */}
       <Route path="/retail/register" element={<Registration />} />
-      <Route path="/products/:productShortId" element={<ProductDetails />} />
+      <Route path="/products/pro/:productShortId" element={<ProductDetails />} />
       <Route path="/retail/createOrder" element={<CreateOrder />} />
       <Route path="/retail/restock" element={<RestockUpdatePage />} />
       <Route path="/invoice" element={<Invoice />} />
       <Route path="/retail/productForm" element={<ProductCreationForm/>} />
-      <Route path="retail/customerForm" element={<CustomerRegistrationForm />}/>
+      <Route path="/retail/customerForm" element={<CustomerRegistrationForm />}/>
+      <Route path="/retail/branches" element={<BranchCards />}/>
+      <Route path="/retail/branchForm" element={<BranchForm />}/>
       
       <Route path="/crm/requirements" element={<RequirementGathering />} />
       <Route path="/crm/dashboard" element={<Dashboard />} />

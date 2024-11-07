@@ -5,8 +5,10 @@ import ProductDashboard from '../../components/Dashboard/Product/ProductDashboar
 import BrandCountChart from '../../components/Dashboard/Product/BrandCountChart';
 import DashboardPage from '../../components/Dashboard/DashboardPage';
 import OrderStatsChart from '../../components/Dashboard/Orders/OrdersStatsChart';
-import OrderStatusPieChart from '../../components/Dashboard/Orders/OrderStatusPieChart'; // Import the OrderStatusPieChart component
-
+import OrderStatusPieChart from '../../components/Dashboard/Orders/OrderStatusPieChart';
+import ProductHeatmap from '../../components/Dashboard/Product/ProductHeatmap';
+import CustomerChart from '../../components/Dashboard/Customer/CustomerChart'; // Import the CustomerChart component
+import TotalSalesChart from '../../components/Dashboard/Orders/TotalSalesChart';
 
 const Dashboard: React.FC = () => {
   const [role, setRole] = useState<string | null>(null);
@@ -23,8 +25,64 @@ const Dashboard: React.FC = () => {
   return (
     <DashboardLayout>
       <DashboardPage />
-      <Grid container spacing={4} sx={{ padding: 2, marginTop: 5 }}>
-        {/* Only show this to branch retailers */}
+      <Grid container spacing={4} sx={{ padding: 2, marginTop: 1 }}>
+        {/* Row 1 */}
+        <Grid container item xs={12} spacing={4}>
+    {/* Product Heatmap for both branch and business retailers */}
+    <Grid item xs={12} sm={6} md={6}>
+      <Box
+        sx={{
+          p: 3,
+          border: '1px solid #ccc',
+          borderRadius: '8px',
+          backgroundColor: '#fff',
+          boxShadow: 2,
+          width: '100%',
+          margin: '0 auto',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%', // Ensure full height usage
+        }}
+      >
+        <Typography variant="h6" component="h2" gutterBottom>
+          Product Heatmap
+        </Typography>
+        <Box sx={{ flexGrow: 1 }}>
+          <ProductHeatmap />
+        </Box>
+      </Box>
+    </Grid>
+
+    {/* Customer Count Chart */}
+    <Grid item xs={12} sm={6} md={6}>
+      <Box
+        sx={{
+          p: 3,
+          border: '1px solid #ccc',
+          borderRadius: '8px',
+          backgroundColor: '#fff',
+          boxShadow: 2,
+          width: '100%',
+          margin: '0 auto',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%', // Ensure full height usage
+        }}
+      >
+        <Typography variant="h6" component="h2" gutterBottom>
+          Customers per Branch
+        </Typography>
+        <Box sx={{ flexGrow: 1 }}>
+          <CustomerChart />
+        </Box>
+      </Box>
+    </Grid>
+  </Grid>
+
+
+        {/* Only show these to branch retailers */}
         {role === 'branch_retailer' && (
           <>
             {/* Profit Distribution Card */}
@@ -37,8 +95,8 @@ const Dashboard: React.FC = () => {
                   backgroundColor: '#fff',
                   boxShadow: 2,
                   width: '100%',
-                  maxWidth: 520,
                   margin: '0 auto',
+                  
                 }}
               >
                 <Typography variant="h6" component="h2" gutterBottom>
@@ -58,52 +116,39 @@ const Dashboard: React.FC = () => {
                   backgroundColor: '#fff',
                   boxShadow: 2,
                   width: '100%',
-                  maxWidth: 520,
                   margin: '0 auto',
                 }}
               >
                 <Typography variant="h6" component="h2" gutterBottom>
                   Product Count by Brand
                 </Typography>
-                {branchShortId ? (
-                  <BrandCountChart branchShortId={branchShortId} />
-                ) : (
-                  <Typography color="textSecondary">Please select a branch.</Typography>
-                )}
-              </Box>
-            </Grid>
-
-            {/* Order Status Pie Chart */}
-            <Grid item xs={12} sm={6} md={6}>
-              <Box
-                sx={{
-                  p: 3,
-                  border: '1px solid #ccc',
-                  borderRadius: '8px',
-                  backgroundColor: '#fff',
-                  boxShadow: 2,
-                  width: '100%',
-                  maxWidth: 520,
-                  margin: '0 auto',
-                }}
-              >
-                <Typography variant="h6" component="h2" gutterBottom>
-                  Order Status
-                </Typography>
-                {branchShortId ? (
-                  <OrderStatusPieChart />
-                ) : (
-                  <Typography color="textSecondary">Branch Short ID not available.</Typography>
-                )}
+                {branchShortId ? <BrandCountChart branchShortId={branchShortId} /> : null}
               </Box>
             </Grid>
           </>
         )}
-      
 
-        {/* Always show this to business retailers */}
-        {role === 'business_retailer' && (
-          <Grid item xs={12} sm={12} md={12}>
+        {/* Order Statistics and Status Charts */}
+        <Grid item xs={12} sm={6} md={6}>
+          <Box
+            sx={{
+              p: 3,
+              border: '1px solid #ccc',
+              borderRadius: '8px',
+              backgroundColor: '#fff',
+              boxShadow: 2,
+              width: '100%',
+              margin: '0 auto',
+            }}
+          >
+            <Typography variant="h6" component="h2" gutterBottom>
+              Order Statistics
+            </Typography>
+            <OrderStatsChart />
+          </Box>
+        </Grid>
+
+        <Grid item xs={12} sm={12} md={12}>
             <Box
               sx={{
                 p: 3,
@@ -112,17 +157,15 @@ const Dashboard: React.FC = () => {
                 backgroundColor: '#fff',
                 boxShadow: 2,
                 width: '100%',
-                maxWidth: 520,
                 margin: '0 auto',
               }}
             >
               <Typography variant="h6" component="h2" gutterBottom>
-                Order Stats
+                Total Sales Overview
               </Typography>
-              <OrderStatsChart />
+              <TotalSalesChart />
             </Box>
           </Grid>
-        )}
       </Grid>
     </DashboardLayout>
   );

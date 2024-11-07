@@ -1,21 +1,7 @@
-// src/components/ProductList.tsx
 import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-
-interface IProduct {
-  productShortId: string;
-  brandName: string;
-  productName: string;
-  productQuantity: number;
-  description: string;
-  category: string;
-  price: number;
-  productImage: string;
-  inventoryShortId: string;
-  branchShortId: string[];
-}
+import DashboardLayout from '../../layouts/crm/DashboardLayout';
 
 // Fetch brands by branch ID
 const getBrandsByBranch = async (branchShortId: string) => {
@@ -29,48 +15,57 @@ const getBrandsByBranch = async (branchShortId: string) => {
 };
 
 const ProductList: React.FC = () => {
+  const { branchShortId } = useParams<{ branchShortId: string }>(); // Retrieve branchShortId from the URL
   const [brands, setBrands] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const branchShortId = sessionStorage.getItem('branchShortId');
     if (branchShortId) {
       getBrandsByBranch(branchShortId)
         .then(setBrands)
         .catch(() => setError('Failed to load brands'))
         .finally(() => setLoading(false));
     } else {
-      setError('Branch ID not found in local storage');
+      setError('Branch ID not found in URL');
       setLoading(false);
     }
-  }, []);
+  }, [branchShortId]);
 
-  if (loading) return <div>Loading brands...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="text-center text-gray-600">Loading brands...</div>;
+  if (error) return <div className="text-center text-red-600">{error}</div>;
 
   return (
-    <div className="flex bg-gray-100 py-24 sm:py-32">
-      <div className="w-3/4 mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Brands</h2>
-        <p className="mt-2 text-lg text-gray-600">Select a brand to view its categories on a new page.</p>
-        
-        {/* Display brands as clickable cards */}
-        <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-          {brands.map((brand) => (
-            <Link
-              key={brand}
-              to={`/brands/${brand}`}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-            >
-              <h3 className="text-lg font-semibold text-gray-900">{brand}</h3>
-            </Link>
-          ))}
+    <DashboardLayout>
+      <div className="bg-gray-50 min-h-screen py-12">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+          <h2 className="text-4xl font-bold text-gray-900 sm:text-5xl mb-8 text-center">Brands for Branch {branchShortId}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {brands.map((brand) => (
+              <Link
+                key={brand}
+                to={`/retail/brand/${brand}`} // Navigate to the brand's categories page
+                className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center justify-center transform transition-all duration-500 hover:scale-105 hover:shadow-xl"
+              >
+                <div className="w-24 h-24 mb-6 overflow-hidden rounded-full border-4 border-blue-600">
+                  <img
+                    src={`https://via.placeholder.com/150?text=${brand}`}
+                    alt={brand}
+                    className="object-cover w-full h-full"
+                    onError={(e) => {
+                      e.currentTarget.src = 'https://via.placeholder.com/150?text=No+Image'; // Fallback image
+                    }}
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{brand}</h3>
+                <p className="text-gray-500 text-center text-base">Click to explore categories for this brand.</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 };
-
 
 export default ProductList;
