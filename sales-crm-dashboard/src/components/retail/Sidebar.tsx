@@ -24,7 +24,11 @@ const Sidebar: React.FC = () => {
                 <Link to="/retail/branchForm">Add Branch</Link>
               </li>
               
-            </>
+            <li>
+              <Link to="/retail/register">Regsiter User</Link>
+            </li>
+            
+          </>
           )}
           {role === 'branch_retailer'  && ( // Check if the role is branchRetailer
             <>

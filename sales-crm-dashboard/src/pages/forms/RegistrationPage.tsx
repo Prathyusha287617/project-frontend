@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Styles from '../../styles/customerRegistrationForm.module.css';
+import DashboardLayout from '../../layouts/crm/DashboardLayout';
 type FormData = {
   username: string;
   email: string;
@@ -44,6 +45,7 @@ const RegistrationPage: React.FC = () => {
   };
 
   return (
+    <DashboardLayout>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold text-center text-gray-800">Register</h2>
@@ -151,6 +153,7 @@ const RegistrationPage: React.FC = () => {
         </form>
       </div>
     </div>
+    </DashboardLayout>
   );
 };
 

@@ -301,7 +301,7 @@ const CreateOrder: React.FC = () => {
                 className={styles.quantityInput}
               />
             </label>
-            <p>Total Price: ${totalPrice}</p>
+            <p>Total Price: {totalPrice}</p>
           </div>
         )}
  

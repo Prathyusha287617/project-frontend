@@ -73,7 +73,7 @@ const RetailSignIn: React.FC = () => {
             <button type="submit" disabled={loading}>Sign In</button> {/* Disable button while loading */}
           </form>
           {error && <p className={styles.error}>{error}</p>}
-          <p>Don't have an account? <Link to="/retail/signup">Sign Up</Link></p>
+          <p>Forgot Password</p>
         </div>
       </div>
     </div>

@@ -4,11 +4,11 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 // Dummy data for customers per branch
 const data = [
-  { branchShortId: 'Branch001', customerCount: 45 },
-  { branchShortId: 'Branch002', customerCount: 30 },
-  { branchShortId: 'Branch003', customerCount: 25 },
-  { branchShortId: 'Branch004', customerCount: 60 },
-  { branchShortId: 'Branch005', customerCount: 15 },
+  { branchShortId: 'PAI001', customerCount: 2 },
+  { branchShortId: 'PAI002', customerCount: 2 },
+  { branchShortId: 'PAI008', customerCount: 3 },
+  { branchShortId: 'PAI004', customerCount: 1 },
+  { branchShortId: 'PAI005', customerCount: 2 },
 ];
 
 const CustomerChart: React.FC = () => {

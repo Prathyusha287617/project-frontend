@@ -1,18 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-
-import RequirementGathering from './pages/crm/RequirementGatherings';
 import Dashboard from './pages/retail/Dashboard';
-import Contacts from './pages/crm/Contacts';
-import Leads from './pages/crm/Leads';
-import Projects from './pages/crm/Projects';
-import Deals from './pages/crm/Deals';
-import Accounts from './pages/crm/Accounts';
 import RetailSignin from './pages/retail/retailSignIn';
 import RetailBranch from './pages/retail/branch/retailBranch';
-import MainPage from './pages/retail/MainPage';
-import InventoryList from './components/retail/productList';
 import BrandCategories from './components/retail/brandCategories';
 import CustomerPage from './components/retail/CustomerPage';
 import OrderPage from './components/retail/OrderPage'; 
@@ -51,13 +42,9 @@ const AppRoutes: React.FC = () => {
       <Route path="/retail/branches" element={<BranchCards />}/>
       <Route path="/retail/branchForm" element={<BranchForm />}/>
       
-      <Route path="/crm/requirements" element={<RequirementGathering />} />
+   
       <Route path="/crm/dashboard" element={<Dashboard />} />
-      <Route path="/crm/contacts" element={<Contacts />} />
-      <Route path="/crm/leads" element={<Leads />} />
-      <Route path="/crm/projects" element={<Projects />} />
-      <Route path="/crm/deals" element={<Deals />} />
-      <Route path="/crm/accounts" element={<Accounts />} />
+      
 
     </Routes>
   );
